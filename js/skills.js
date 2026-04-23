@@ -72,8 +72,8 @@ function getSkills() {
                 // Create a card for each skill with its details and a delete button
                 const divCard = document.createElement("div")
                 divCard.className = "card mb-2 p-2"
-                divCard.innerHTML = `<b>${objSkill.name}</b>
-                                     Type: ${objSkill.type}
+                divCard.innerHTML = `<b class="text-dark">${objSkill.name}</b>
+                                     <p class="text-dark">Type: ${objSkill.type}</p>
                                      <div class="d-flex justify-content-end align-items-center">
                                         <button id="btnSuggestSkill-${objSkill.id}" class="btn btn-primary mx-2" type="button" onclick="suggestSkill(${objSkill.id})">AI Rewrite</button>
                                         <button id="btnDeleteSkill-${objSkill.id}" class="btn btn-danger" type="button" onclick="deleteSkill(${objSkill.id})">Delete</button>
@@ -86,7 +86,7 @@ function getSkills() {
                                         <div class="form-check mt-1">
                                             <input class="form-check-input" type="checkbox" value="${objSkill.id}" id="skill_${objSkill.id}">
                                         </div>
-                                        <label class="form-check-label w-100" for="skill_${objSkill.id}">
+                                        <label class="form-check-label w-100 text-dark" for="skill_${objSkill.id}">
                                             <div><b>${objSkill.name}</b> - ${objSkill.type}</div>
                                         </label>
                                     </div>` // Used AI to figure out how to create a checkbox for each skill in the selection list

@@ -220,6 +220,7 @@ app.post("/suggest-job", async (req,res) => {
                         Please provide an improved version of the job entry that is more concise and impactful for a resume.
                         Add html/css formatting if necessary (and only when appropriate) to make the job entry more visually appealing on a resume, MAKE SURE NOT TO BREAK OTHER HTML/CSS that might be present.
                         Return a better rewritten version of responsibilities only.
+                        Make sure to use colors with enough contrast to score good on lighthouse accessibility audits.
                         Do Not return a intro sentence such as Here is an improved, high-impact version of your responsibilities at Bank of America, formatted for a professional resume, just return the rewritten responsibilities with no additional characters or formatting.`
 
         const objResponse = await genAI.models.generateContent({
@@ -251,6 +252,7 @@ app.post("/suggest-skill", async (req,res) => {
                         Name: ${name}, Type: ${type}. 
                         Please provide an improved version of the skill entry that is more concise and impactful for a resume.
                         Rewrite the skill to sound more professional and impactful.
+                        Make sure to use colors with enough contrast to score good on lighthouse accessibility audits.
                         Return a better rewritten version of name only (should be more descriptive and impactful, for example instead of "Python" it could be "Python Programming for Data Analysis")
                         Return only the rewritten name with no additional characters or formatting.
                         Do Not return a intro sentence such as Here is an improved, high-impact version of your name, formatted for a professional resume, just return the rewritten name with no additional characters or formatting.`
@@ -289,6 +291,7 @@ app.post("/generate-resume", async (req,res) => {
                         AI should not invent job titles
                         Must preserve factual information
                         Should optimize for ATS readability
+                        Make sure to use colors with enough contrast to score good on lighthouse accessibility audits.
                         Background and foreground colors should be different enough to be easily read by ATS software.
                         Links rely on color to be distinguishable, Make sure the contrast is sufficient for accessibility.
                         Do Not return a intro sentence such as Here is a polished, professional version of your resume in HTML format, just return the HTML with no additional characters or formatting.`

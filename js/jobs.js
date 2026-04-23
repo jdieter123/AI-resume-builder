@@ -77,9 +77,9 @@ function getJobs() {
                 // Create a card for each job with its details and a delete button
                 const divCard = document.createElement("div")
                 divCard.className = "card mb-2 p-2"
-                divCard.innerHTML = `<b>${objJob.title}</b>
-                                    Company: ${objJob.company}
-                                    <p>Responsibilities: ${objJob.responsibilities}</p>
+                divCard.innerHTML = `<b class="text-dark">${objJob.title}</b>
+                                    <p class="text-dark">Company: ${objJob.company}</p>
+                                    <p class="text-dark">Responsibilities: ${objJob.responsibilities}</p>
                                     <div class="d-flex justify-content-end align-items-center">
                                        <button id="btnSuggestJob-${objJob.id}" class="btn btn-primary mx-2" type="button" onclick="suggestJob(${objJob.id})">AI Rewrite</button>
                                        <button id="btnDeleteJob-${objJob.id}" class="btn btn-danger" type="button" onclick="deleteJob(${objJob.id})">Delete</button>
@@ -92,7 +92,7 @@ function getJobs() {
                                         <div class="form-check mt-1">
                                             <input class="form-check-input" type="checkbox" value="${objJob.id}" id="job_${objJob.id}">
                                         </div>
-                                        <label class="form-check-label w-100" for="job_${objJob.id}">
+                                        <label class="form-check-label w-100 text-dark" for="job_${objJob.id}">
                                             <div class="fw-bold fs-6">${objJob.title}</div>
                                             <div class="mb-1">Company: ${objJob.company}</div>
                                             <div>${objJob.responsibilities}</div>
