@@ -2,10 +2,195 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Resume Builder</title>
+
+    <title>Professional Resume Generator</title>
+
+    <link rel="icon" href="images/resumeBuilderIcon.PNG">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/resume.css">
 </head>
-<body>
-    
+
+<body class="bg-light">
+    <!-- HEADER -->
+    <header class="bg-primary p-3 border-bottom">
+        <h3 class="mb-0 text-center text-light">Professional Resume Generator</h3>
+    </header>
+
+    <!-- Nav Buttons + Credits button -->
+    <div class="d-flex justify-content-center mt-2 gap-2">
+        <button class="btn btn-dark" id="btnGeneratorPage" type="button">Generate Resume</button>
+        <button class="btn btn-dark" id="btnJobsPage" type="button">Add Jobs</button>
+        <button class="btn btn-dark" id="btnSkillsPage" type="button">Add Skills</button>
+        <button class="btn btn-dark" id="btnCredits" type="button">Credits</button>
+    </div>
+
+    <!-- API KEY -->
+    <div class="d-flex justify-content-center mt-4">
+        <div class="col-md-6 col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <label for="txtApiKey" class="form-label fw-bold text-dark">Gemini API Key</label>
+                <button class="btn btn-success mb-2" id="btnSaveApiKey" type="button">Save API Key</button>
+            </div>
+            <input id="txtApiKey" class="form-control mb-2" type="password" placeholder="Enter your API key to enable AI features">
+        </div>
+    </div>
+
+    <!-- Flex Box -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- Generator -->
+        <main id="divGeneratorPage" class="col-md-6 col-12">
+
+            <!-- INFO FORM -->
+            <form class="card mb-3">
+                <div class="card-body text-dark">
+                    <h4 class="fw-bold mb-4">Personal Information</h4>
+
+                    <label class="form-label m-2" for="txtName">Name:</label>
+                    <input id="txtName" class="form-control mb-2" type="text">
+
+                    <label class="form-label m-2" for="txtEmail">Email:</label>
+                    <input id="txtEmail" class="form-control mb-2" type="email">
+
+                    <label class="form-label m-2" for="txtPhone">Phone Number:</label>
+                    <input id="txtPhone" class="form-control mb-2" type="tel">
+
+                    <label class="form-label m-2" for="txtLocation">Location:</label>
+                    <input id="txtLocation" class="form-control mb-2" type="text">
+
+                </div>
+            </form>
+
+            <!-- GENERATE RESUME -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="mb-4 fw-bold text-dark">Select Content for Resume</h5>
+                    <h6 class="text-dark">Jobs</h6>
+                    <div id="divJobSelectionList">
+                        <!-- Jobs will be displayed here as they are added -->
+                    </div>
+
+                    <h6 class="mt-4 text-dark">Skills / Certifications / Awards</h6>
+                    <div id="divSkillSelectionList">
+                        <!-- Skills will be displayed here as they are added -->
+                    </div>
+
+                    <button id="btnGenerateResume" class="btn btn-success w-100 mt-3" type="button">
+                        Generate Resume
+                    </button>
+                </div>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold text-dark">Resume Output</h5>
+                        <button id="btnPrintResume" class="btn btn-secondary w-25 mt-2 d-none" type="button">
+                            Print
+                        </button>
+                    </div>
+                    <div id="divResumeOutput" class="resume">
+                        <!-- Generated resume will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Suggestion Button -->
+            <button id="btnAIGenerateResume" class="btn btn-primary w-100 mt-2 d-none" type="button">
+                Generate Resume with AI
+            </button>
+
+            <!-- AI OUTPUT -->
+            <div class="card mt-2 d-none" id="divAIResumeOutputCard">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold text-dark">AI Resume Output</h5>
+                        <button id="btnPrintAIResume" class="btn btn-secondary w-25 mt-2 d-none" type="button">
+                            Print
+                        </button>
+                    </div>
+                    <div id="divAIResumeOutput" class="mt-2">
+                        <!-- AI Generated resume will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- JOBS -->
+        <div id="divJobsPage" class="col-md-6 col-12 d-none">
+
+            <div class="card mb-3">
+                <div class="card-body text-dark">
+                    <h5 class="fw-bold">Add Job</h5>
+
+                    <label class="form-label m-2" for="txtJobTitle">Job Title:</label>
+                    <input id="txtJobTitle" class="form-control mb-2" type="text">
+
+                    <label class="form-label m-2" for="txtCompany">Company:</label>
+                    <input id="txtCompany" class="form-control mb-2" type="text">
+
+                    <label class="form-label m-2" for="txtResponsibilities">Responsibilities/details:</label>
+                    <input id="txtResponsibilities" class="form-control mb-2" type="text">
+
+                    <button id="btnAddJob" class="btn btn-success w-100" type="button">
+                        Add Job
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark">All Jobs</h5>
+                    <div id="divJobList">
+                        <!-- Jobs will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS / CERTS / AWARDS -->
+        <div id="divSkillsPage" class="col-md-6 col-12 d-none">
+
+            <div class="card mb-3">
+                <div class="card-body text-dark">
+                    <h5 class="fw-bold">Add Skill / Certification / Award</h5>
+
+                    <label class="form-label m-2" for="txtSkillName">Name:</label>
+                    <input id="txtSkillName" class="form-control mb-2" type="text">
+                    
+                    <label class="form-label m-2" for="txtSkillType">Type:</label>
+                    <select id="txtSkillType" class="form-select mb-2">
+                        <option value="Skill">Skill</option>
+                        <option value="Certification">Certification</option>
+                        <option value="Award">Award</option>
+                    </select>
+
+                    <button id="btnAddSkill" class="btn btn-success w-100" type="button">
+                        Add Skill
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark">All Skills</h5>
+                    <div id="divSkillList">
+                        <!-- Skills will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lib/bootstrap.bundle.min.js"></script>
+    <script src="js/lib/sweetalert2@11.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/jobs.js"></script>
+    <script src="js/skills.js"></script>
 </body>
 </html>

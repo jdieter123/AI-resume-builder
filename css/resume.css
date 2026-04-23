@@ -1,0 +1,86 @@
+.resume {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    line-height: 1.4;
+}
+
+/* NAME */
+.resume-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* CONTACT LINE */
+.resume-header p {
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* SECTION HEADERS */
+.resume-section h2 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    margin-top: 20px;
+    padding-bottom: 3px;
+    letter-spacing: 1px;
+}
+
+.resume-list {
+    margin-top: 8px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.resume-list li {
+    margin-bottom: 4px;
+}
+
+/* JOB BLOCK */
+.job {
+    margin-top: 12px;
+}
+
+.job-title {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.job-company {
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.job-responsibilities {
+    margin-left: 18px;
+    font-size: 13px;
+}
+
+/* BULLETS (VERY IMPORTANT FOR ATS) */
+.job-responsibilities li {
+    margin-bottom: 4px;
+}
+
+/* SKILLS */
+.skill {
+    display: inline;
+    font-size: 13px;
+}
+
+.skill::after {
+    content: " • ";
+}
+
+.skill:last-child::after {
+    content: "";
+}
