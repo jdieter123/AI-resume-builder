@@ -30,7 +30,7 @@ document.querySelector("#btnPrintResume").addEventListener("click", () => {
     const printWindow = window.open("", "_blank")
     printWindow.document.write(
         `<!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
             <title>Resume</title>
             <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -64,7 +64,7 @@ document.querySelector("#btnPrintAIResume").addEventListener("click", () => {
     const printWindow = window.open("", "_blank")
     printWindow.document.write(
         `<!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
             <title>AI Resume</title>
             <link rel="stylesheet" href="css/bootstrap.min.css">
