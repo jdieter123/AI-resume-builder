@@ -137,8 +137,8 @@ function suggestSkill(intID) {
     btnSuggestSkill.disabled = true
     btnSuggestSkill.innerText = "Generating..."
 
-    // Get saved API key from session storage
-    const strAPIKey = sessionStorage.getItem("resumeAPIKey")
+    // Get saved API key from local storage
+    const strAPIKey = localStorage.getItem("resumeAPIKey")
 
     // if no API key, show warning and reset button
     if(!strAPIKey) {

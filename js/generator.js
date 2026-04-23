@@ -177,8 +177,8 @@ document.querySelector(`#btnAIGenerateResume`).addEventListener(`click`, () => {
     const arrSelectedJobs = Array.from(document.querySelectorAll(`#divJobSelectionList input[type=checkbox]:checked`)).map(checkbox => checkbox.value)
     const arrSelectedSkills = Array.from(document.querySelectorAll(`#divSkillSelectionList input[type=checkbox]:checked`)).map(checkbox => checkbox.value)
 
-    // Get saved API key from session storage
-    const strAPIKey = sessionStorage.getItem("resumeAPIKey")
+    // Get saved API key from local storage
+    const strAPIKey = localStorage.getItem("resumeAPIKey")
 
     // if no API key, show warning and reset button
     if(!strAPIKey) {
@@ -187,7 +187,7 @@ document.querySelector(`#btnAIGenerateResume`).addEventListener(`click`, () => {
             text: "Please enter and save your API key before using the AI Rewrite feature.",
             icon: "warning"
         })
-        
+
         return
     }
 

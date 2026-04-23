@@ -91,10 +91,10 @@ document.querySelector("#btnPrintAIResume").addEventListener("click", () => {
 
 })
 
-// save API key to session storage
+// save API key to local storage
 document.querySelector(`#btnSaveApiKey`).addEventListener("click", () => {
     const strAPIKey = document.querySelector(`#txtApiKey`).value.trim()
-    sessionStorage.setItem("resumeAPIKey", strAPIKey)
+    localStorage.setItem("resumeAPIKey", strAPIKey)
 
     Swal.fire({
         title: "Saved!",
@@ -103,10 +103,10 @@ document.querySelector(`#btnSaveApiKey`).addEventListener("click", () => {
     })
 })
 
-// restore info from session storage
-function restoreSessionInfo() {
+// restore info from session and local storage
+function restoreInfo() {
     const savedPersonalData = sessionStorage.getItem("resumePersonalData")
-    const savedAPIKey = sessionStorage.getItem("resumeAPIKey")
+    const savedAPIKey = localStorage.getItem("resumeAPIKey")
 
     if(savedPersonalData) {
         const objPersonalData = JSON.parse(savedPersonalData)
@@ -123,7 +123,7 @@ function restoreSessionInfo() {
         document.querySelector(`#txtApiKey`).value = strAPIKey || ""
     }
 }
-restoreSessionInfo() // restore session info on page load
+restoreInfo() // restore info on page load
 
 // Credits sweetalert
 document.querySelector(`#btnCredits`).addEventListener("click", () => {

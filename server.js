@@ -208,7 +208,7 @@ app.put("/skills", (req,res) => {
 app.post("/suggest-job", async (req,res) => {
     const { apiKey, title, company, responsibilities } = req.body
 
-    const genAI = new GoogleGenAI(apiKey) // initialize the GenAI client with the provided API key 
+    const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key 
 
     if (!title || !company || !responsibilities) {
         return res.status(400).json({outcome: "error", message: "Missing title, company, or responsibilities in request body"})
@@ -240,7 +240,7 @@ app.post("/suggest-job", async (req,res) => {
 app.post("/suggest-skill", async (req,res) => {
     const { apiKey, name, type } = req.body
 
-    const genAI = new GoogleGenAI(apiKey) // initialize the GenAI client with the provided API key 
+    const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key 
 
     if (!name || !type) {
         return res.status(400).json({outcome: "error", message: "Missing name or type in request body"})
@@ -272,7 +272,7 @@ app.post("/suggest-skill", async (req,res) => {
 app.post("/generate-resume", async (req,res) => {
     const { apiKey, name, email, phone, location, jobs, skills } = req.body
 
-    const genAI = new GoogleGenAI(apiKey) // initialize the GenAI client with the provided API key 
+    const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key
 
     if (!name || !email || !phone || !location || !jobs || !skills) {
         return res.status(400).json({outcome: "error", message: "Missing name, email, phone, location, jobs, or skills in request body"})
