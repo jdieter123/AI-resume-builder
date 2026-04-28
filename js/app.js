@@ -34,10 +34,9 @@ document.querySelector("#btnPrintResume").addEventListener("click", () => {
         <head>
             <title>Resume</title>
             <link rel="stylesheet" href="css/bootstrap.min.css">
-            <link rel="stylesheet" href="css/resume.css">
         </head>
         <body>
-            <div class="resume">
+            <div class="bg-white p-4 mx-auto">
                 ${content}
             </div>
 
@@ -68,7 +67,6 @@ document.querySelector("#btnPrintAIResume").addEventListener("click", () => {
         <head>
             <title>AI Resume</title>
             <link rel="stylesheet" href="css/bootstrap.min.css">
-            <link rel="stylesheet" href="css/resume.css">
         </head>
         <body>
             <div class="mt-2">

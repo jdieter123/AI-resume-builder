@@ -106,20 +106,22 @@ function buildResume(strName, strEmail, strPhone, strLocation, arrJobs, arrSkill
     const divOutput = document.querySelector("#divResumeOutput")
 
     // Header section
-    let html = `<div class="resume-header">
-                    <h1>${strName}</h1>
-                    <p>${strEmail} | ${strPhone} | ${strLocation}</p>
+    let html = `<div class="text-center mb-3">
+                    <h1 class="fw-bold fs-3 mb-1">${strName}</h1>
+                    <p class="small mb-0">${strEmail} | ${strPhone} | ${strLocation}</p>
                 </div>
 
-                <div class="resume-section">
-                    <h2>Experience</h2>`
+                <div class="mb-3">
+                    <h2 class="fw-bold text-uppercase border-bottom pb-1 small">Experience</h2>`
 
     // Jobs section
     arrJobs.forEach(objJob => {
-        html += `<div class="job">
-                    <div class="job-title">${objJob.title}</div>
-                    <div class="job-company">Company: ${objJob.company}</div>
-                    <div class="job-responsibilities">${objJob.responsibilities}</div>
+        html += `<div class="mt-2">
+                    <div class="fw-bold small">${objJob.title}</div>
+                    <div class="fst-italic small mb-1">Company: ${objJob.company}</div>
+                    <div class="small ps-3 mb-1">
+                        <div>${objJob.responsibilities}</div>
+                    </div>
                 </div>`
     })
 
@@ -127,9 +129,9 @@ function buildResume(strName, strEmail, strPhone, strLocation, arrJobs, arrSkill
 
     // Skills section
     if(arrSkills.filter(objSkill => objSkill.type === "Skill").length > 0) {
-        html += `<div class="resume-section">
-                    <h2>Skills</h2>
-                    <ul class="resume-list">`
+        html += `<div class="mb-3">
+                    <h2 class="fw-bold text-uppercase border-bottom pb-1 small">Skills</h2>
+                    <ul class="small ps-3 mb-0">`
 
         arrSkills.filter(objSkill => objSkill.type === "Skill").forEach(objSkill => {
             html += `<li>${objSkill.name}</li>`
@@ -140,9 +142,9 @@ function buildResume(strName, strEmail, strPhone, strLocation, arrJobs, arrSkill
 
     // Certifications section
     if(arrSkills.filter(objCertification => objCertification.type === "Certification").length > 0) {
-        html += `<div class="resume-section">
-                    <h2>Certifications</h2>
-                    <ul class="resume-list">`
+        html += `<div class="mb-3">
+                    <h2 class="fw-bold text-uppercase border-bottom pb-1 small">Certifications</h2>
+                    <ul class="small ps-3 mb-0">`
         
         arrSkills.filter(objCertification => objCertification.type === "Certification").forEach(objCertification => {
             html += `<li>${objCertification.name}</li>`
@@ -153,9 +155,9 @@ function buildResume(strName, strEmail, strPhone, strLocation, arrJobs, arrSkill
 
     // Awards section
     if(arrSkills.filter(objAward => objAward.type === "Award").length > 0) {
-        html += `<div class="resume-section">
-                    <h2>Awards</h2>
-                    <ul class="resume-list">`
+        html += `<div class="mb-3">
+                    <h2 class="fw-bold text-uppercase border-bottom pb-1 small">Awards</h2>
+                    <ul class="small ps-3 mb-0">`
         
         arrSkills.filter(objAward => objAward.type === "Award").forEach(objAward => {
             html += `<li>${objAward.name}</li>`
