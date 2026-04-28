@@ -1,4 +1,4 @@
-// npm install @google/genai express cors dotenv
+// npm install @google/genai express cors
 const { GoogleGenAI } = require("@google/genai")
 const express = require('express') // include express library
 const sqlite3 = require('sqlite3').verbose() // include sqlite3, verbose = provide lots of details
@@ -10,8 +10,6 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// Initialize the Google GenAI client with the API key from our .env file
-//const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY)
 // identify the model we want to use for story generation
 const model = "gemini-3-flash-preview"
 
@@ -33,7 +31,7 @@ app.post("/jobs", (req,res) => {
     const strCompany = req.body.company
     const strResponsibilities = req.body.responsibilities
 
-    // check
+    // check for title, company, and responsibilities
     if (!strTitle || !strCompany || !strResponsibilities) {
         return res.status(400).json({outcome: "error", message: "Missing title, company, or responsibilities in request body"})
     }
@@ -65,6 +63,7 @@ app.get("/jobs", (req,res) => {
 app.get("/jobs/:id", (req,res) => {
     const intID = req.params.id
 
+    // check for ID
     if (!intID) {
         return res.status(400).json({outcome: "error", message: "Missing job id in request parameters"})
     }
@@ -84,6 +83,7 @@ app.delete("/jobs", (req,res) => {
     // getting jobs id from body data
     const intID = req.body.id
 
+    // check for ID
     if (!intID) {
         return res.status(400).json({outcome: "error", message: "Missing job id in request body"})
     }
@@ -102,6 +102,7 @@ app.delete("/jobs", (req,res) => {
 app.put("/jobs", (req,res) => {
     const { id, title, company, responsibilities } = req.body
 
+    // check for ID, title, company, and responsibilities
     if (!id || !title || !company || !responsibilities) {
         return res.status(400).json({outcome: "error", message: "Missing id, title, company, or responsibilities in request body"})
     }
@@ -121,7 +122,7 @@ app.post("/skills", (req,res) => {
     const strSkillName = req.body.name
     const strSkillType = req.body.type
 
-    // check
+    // check skillName and skillType
     if (!strSkillName || !strSkillType) {
         return res.status(400).json({outcome: "error", message: "Missing skill name or type in request body"})
     }
@@ -153,6 +154,7 @@ app.get("/skills", (req,res) => {
 app.get("/skills/:id", (req,res) => {
     const intID = req.params.id
 
+    // check for ID
     if (!intID) {
         return res.status(400).json({outcome: "error", message: "Missing skill id in request parameters"})
     }
@@ -172,6 +174,7 @@ app.delete("/skills", (req,res) => {
     // getting skill id from body data
     const intID = req.body.id
 
+    // check for ID
     if (!intID) {
         return res.status(400).json({outcome: "error", message: "Missing skill id in request body"})
     }
@@ -190,6 +193,7 @@ app.delete("/skills", (req,res) => {
 app.put("/skills", (req,res) => {
     const { id, name, type } = req.body
 
+    // check for ID, name, and type
     if (!id || !name || !type) {
         return res.status(400).json({outcome: "error", message: "Missing id, name, or type in request body"})
     }
@@ -210,10 +214,12 @@ app.post("/suggest-job", async (req,res) => {
 
     const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key 
 
+    // check for title, company, and responsibilities
     if (!title || !company || !responsibilities) {
         return res.status(400).json({outcome: "error", message: "Missing title, company, or responsibilities in request body"})
     }
 
+    // try to get generated response from AI
     try {
         const prompt = `Improve this job entry for a professional resume.
                         Title: ${title}, Company: ${company}, Responsibilities: ${responsibilities}.
@@ -243,10 +249,12 @@ app.post("/suggest-skill", async (req,res) => {
 
     const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key 
 
+    // check for name and type
     if (!name || !type) {
         return res.status(400).json({outcome: "error", message: "Missing name or type in request body"})
     }
 
+    // try to get generated response from AI
     try {
         const prompt = `Improve this skill entry for a professional resume.
                         Name: ${name}, Type: ${type}. 
@@ -276,10 +284,12 @@ app.post("/generate-resume", async (req,res) => {
 
     const genAI = new GoogleGenAI({apiKey: apiKey}) // initialize the GenAI client with the provided API key
 
+    // check for name, email, phone, location, jobs, and skills
     if (!name || !email || !phone || !location || !jobs || !skills) {
         return res.status(400).json({outcome: "error", message: "Missing name, email, phone, location, jobs, or skills in request body"})
     }
 
+    // try to get generated response from AI
     try {
         const prompt = `Rewrite this resume into a polished professional version with the following details:
                         Name: ${name}, Email: ${email}, Phone: ${phone}, Location: ${location}, Jobs/Education: ${JSON.stringify(jobs)}, Skills: ${JSON.stringify(skills)}
