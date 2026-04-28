@@ -26,7 +26,7 @@ This application allows users to create professional resumes by selecting jobs, 
 ### 1. Install Dependencies
 
 ```
-npm install express sqlite3 cors dotenv @google/genai
+npm install express cors @google/genai
 ```
 
 ### 2. Run Server
